@@ -1,17 +1,20 @@
-def version = "v3"
-
 pipeline {
     agent any
+
+    environment {
+        VERSION = "v3"
+    }
+    
     stages {
         stage('Build image') {
             steps {
-                sh 'docker build -t registry.hub.docker.com/dennischou/test:${version} .'
+                sh 'docker build -t registry.hub.docker.com/dennischou/test:${VERSION} .'
             }
         }
         stage('Push image') {
             steps {
                 sh 'docker login registry.hub.docker.com -u dennischou -p gary0223chou'
-                sh 'docker push registry.hub.docker.com/dennischou/test:${version}'
+                sh 'docker push registry.hub.docker.com/dennischou/test:${VERSION}'
                 sh 'docker logout registry.hub.docker.com'
             }
         }
