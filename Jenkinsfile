@@ -9,13 +9,13 @@ pipeline {
     stages {
         stage('Build image') {
             steps {
-                sh 'docker build -t registry.hub.docker.com/dennischou/test:${VERSION} .'
+                sh 'docker build -t registry.hub.docker.com/dses0223/test:${VERSION} .'
             }
         }
         stage('Push image') {
             steps {
                 sh 'docker login registry.hub.docker.com -u dses0223 -p ${REGISTRY_PWD}'
-                sh 'docker push registry.hub.docker.com/dennischou/test:${VERSION}'
+                sh 'docker push registry.hub.docker.com/dses0223/test:${VERSION}'
                 sh 'docker logout registry.hub.docker.com'
             }
         }
