@@ -3,8 +3,9 @@ pipeline {
 
     environment {
         VERSION = "v3"
+        REGISTRY_PWD = "dennis0223"
     }
-    
+
     stages {
         stage('Build image') {
             steps {
@@ -13,7 +14,7 @@ pipeline {
         }
         stage('Push image') {
             steps {
-                sh 'docker login registry.hub.docker.com -u dennischou -p gary0223chou'
+                sh 'docker login registry.hub.docker.com -u dses0223 -p ${REGISTRY_PWD}'
                 sh 'docker push registry.hub.docker.com/dennischou/test:${VERSION}'
                 sh 'docker logout registry.hub.docker.com'
             }
